@@ -1,7 +1,12 @@
 package com.lambdacode.creditscoreanalysiswebapplication.Service;
 
+import com.lambdacode.creditscoreanalysiswebapplication.Model.User;
 import com.lambdacode.creditscoreanalysiswebapplication.Request.RegisterRequest;
 
+import java.util.ArrayList;
+
 public interface RegisterService {
-    void register(RegisterRequest registerRequest);
+    Object register(RegisterRequest registerRequest);
+
+    Object pendingUserList();
 }

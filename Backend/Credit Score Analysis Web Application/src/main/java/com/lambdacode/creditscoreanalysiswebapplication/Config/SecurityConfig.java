@@ -31,7 +31,6 @@ public class SecurityConfig {
 
     @Autowired
     private JwtFilter jwtFilter;
-    //this class bypasses all the default security chain and make a custom chain which we can manually write what filters we want to add
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
@@ -47,7 +46,7 @@ public class SecurityConfig {
 //                        .permitAll()
 //                        .requestMatchers("api/register/registerStaff")
 //                        .permitAll()
-                        .requestMatchers("api/login/loginUser","api/register/registerUser")
+                        .requestMatchers("api/login/loginUser")
                         .permitAll()
                         // this permit all the requestMatcher's request which means these pages only get access without spring security Interference
                         .anyRequest().authenticated())//no one is able to access the page without authentication except requestMatchers pages
@@ -57,6 +56,15 @@ public class SecurityConfig {
                 .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();
     };
+//    @Bean
+//    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+//        return http
+//                .csrf(csrf -> csrf.disable()) // Disable CSRF
+//                .authorizeHttpRequests(auth -> auth.anyRequest().permitAll()) // Allow all requests
+//                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+//                .build();
+//    }
+
     //            @Bean
 //            public UserDetailsService userDetailsService(){
 //                Object User;

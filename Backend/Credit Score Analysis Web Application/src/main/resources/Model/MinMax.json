@@ -1,0 +1,22 @@
+{
+  "Credit_Utilization_Ratio": {
+    "min": 20.0,
+    "max": 50.00000000000001
+  },
+  "Credit_History_Age_Months": {
+    "min": 1.0,
+    "max": 408.0
+  },
+  "Num_of_Delayed_Payment": {
+    "min": 0.0,
+    "max": 4399.0
+  },
+  "Num_Credit_Inquiries": {
+    "min": 0.0,
+    "max": 2597.0
+  },
+  "Credit_Mix_Number": {
+    "min": 0.0,
+    "max": 10.0
+  }
+}

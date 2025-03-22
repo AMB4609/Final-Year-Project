@@ -1,0 +1,33 @@
+<div class="d-flex justify-content-center align-items-center min-vh-100 w-100" style="background-color: #cfe2ff;">
+  <div class="card shadow-lg p-5 w-100" style="max-width: 450px;">
+    <h1 class="text-center text-primary fw-bold">Credict</h1>
+    <h2 class="text-center fw-semibold">Login now</h2>
+    <p class="text-center text-muted">Hi, Welcome back 👋</p>
+
+    <form (ngSubmit)="onLogin()">
+      <!-- Email -->
+      <div class="mb-3">
+        <label class="form-label">Email</label>
+        <input type="email" [(ngModel)]="userEmail" class="form-control" placeholder="Enter your email id" name="email" required>
+      </div>
+
+      <!-- Password -->
+      <div class="mb-3 position-relative">
+        <label class="form-label">Password</label>
+        <input [type]="showPassword ? 'text' : 'password'" [(ngModel)]="userPassword" class="form-control"
+               placeholder="Enter your password" name="password" required>
+        <span class="position-absolute end-0 top-50 translate-middle-y me-3 cursor-pointer" (click)="togglePasswordVisibility()">
+          <i class="bi" [ngClass]="{'bi-eye': !showPassword, 'bi-eye-slash': showPassword}"></i>
+        </span>
+      </div>
+
+      <!-- Login Button -->
+      <button type="submit" class="btn btn-primary w-100">Login</button>
+    </form>
+
+    <!-- Signup Link -->
+    <p class="text-center text-muted mt-3">
+      Not registered yet? <a routerLink="/register" class="text-primary fw-bold text-decoration-none">Create an account</a>
+    </p>
+  </div>
+</div>
