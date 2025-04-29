@@ -6,7 +6,6 @@ public class JwtResponse {
     private Boolean status;
     private Object data;
 
-    // Getter and Setter for code
     public Integer getCode() {
         return code;
     }
@@ -15,7 +14,6 @@ public class JwtResponse {
         this.code = code;
     }
 
-    // Getter and Setter for message
     public String getMessage() {
         return message;
     }
@@ -24,7 +22,6 @@ public class JwtResponse {
         this.message = message;
     }
 
-    // Getter and Setter for status
     public Boolean getStatus() {
         return status;
     }
@@ -33,7 +30,6 @@ public class JwtResponse {
         this.status = status;
     }
 
-    // Getter and Setter for data
     public Object getData() {
         return data;
     }

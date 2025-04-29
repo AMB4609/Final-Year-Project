@@ -27,11 +27,9 @@ public class EmailService {
                         "Name: %s\n" +
                         "Email: %s\n" +
                         "Role: %s\n\n" +
-                        "To approve this request, please click the following link:\n" +
-                        "http://localhost:9091/api/register/approve?email=%s\n\n" +
-                        "To reject this request, please click the following link:\n" +
-                        "http://localhost:9091/api/register/reject?email=%s\n\n" +
-                        "Best Regards,\nSystem Notification",
+                        "To approve or reject this request, please click the following link:\n" +
+                        "http://localhost:4209/api/register/pendingApprovalUserList\n\n" +
+                        "Best Regards,\n Credit Score System Notification",
                 registerRequest.getUserName(),
                 registerRequest.getUserEmail(),
                 registerRequest.getRole(),

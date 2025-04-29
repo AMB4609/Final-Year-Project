@@ -1,0 +1,38 @@
+<!-- user-staff.component.html -->
+<div class="container mt-4">
+  <div class="dashboard-header">
+    <h1>Manage Users & Staff</h1>
+    <p>Select to view either Users or Staff</p>
+  </div>
+
+  <button *ngIf="role === 'ADMIN'" class="btn-toggle" (click)="toggleList()">
+    {{ showUsers ? 'Show Staff' : 'Show Users' }}
+  </button>
+  <!-- Users List -->
+  <div *ngIf="showUsers" class="dashboard-cards">
+    <div class="glass-card hover-glow fade-in-up" *ngFor="let user of users" style="animation-delay: 0.2s;">
+      <h2>{{ user.userName }}</h2>
+      <p>Role: {{ user.role }}</p>
+      <p>EMAIL DEBUG: {{ user.userEmail}}</p>
+      <div class="card-actions">
+        <button class="btn-action" [routerLink]="['/activity-history', user.userEmail]">View Activities</button>
+
+        <button class="btn-action" [routerLink]="['/profile', user.userEmail]">View Profile</button>
+        <button class="btn-action" (click)="deleteUser(user.userEmail)">Delete</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Staff List -->
+  <div *ngIf="!showUsers" class="dashboard-cards">
+    <div class="glass-card hover-glow fade-in-up" *ngFor="let staff of staff" style="animation-delay: 0.4s;">
+      <h2>{{ staff.staffName }}</h2>
+      <p>Role: {{ staff.role }}</p>
+      <div class="card-actions">
+        <button class="btn-action" [routerLink]="['/activity-history', staff.staffEmail]">View Activities</button>
+        <button class="btn-action" [routerLink]="['/profile', staff.staffEmail]">View Profile</button>
+        <button class="btn-action" (click)="deleteStaff(staff.staffEmail)">Delete</button>
+      </div>
+    </div>
+  </div>
+</div>

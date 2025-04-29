@@ -38,44 +38,16 @@ public class SecurityConfig {
                 .cors(cors -> cors.configurationSource(corsConfigurationSource()))
                 .csrf(customizer -> customizer.disable()) // disabling csrf
                 .authorizeHttpRequests(requests -> requests
-//                        .requestMatchers("api/book/getAllBooks")
-//                        .permitAll()
-//                        .requestMatchers("api/book/getBookById")
-//                        .permitAll()
-//                        .requestMatchers("api/register/registerUser")
-//                        .permitAll()
-//                        .requestMatchers("api/register/registerStaff")
-//                        .permitAll()
-                        .requestMatchers("api/login/loginUser")
+                        .requestMatchers("/api/login/loginUser","/api/register/registerUser")
                         .permitAll()
-                        // this permit all the requestMatcher's request which means these pages only get access without spring security Interference
-                        .anyRequest().authenticated())//no one is able to access the page without authentication except requestMatchers pages
+                        .anyRequest().authenticated())
                 .formLogin(Customizer.withDefaults())
                 .httpBasic(Customizer.withDefaults())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();
     };
-//    @Bean
-//    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-//        return http
-//                .csrf(csrf -> csrf.disable()) // Disable CSRF
-//                .authorizeHttpRequests(auth -> auth.anyRequest().permitAll()) // Allow all requests
-//                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-//                .build();
-//    }
 
-    //            @Bean
-//            public UserDetailsService userDetailsService(){
-//                Object User;
-//                UserDetails user1 = User
-//                        . withDefaultPasswardEncoder()
-//                        . username ("kiran")
-//                        .password("k@123")
-//                        .roles ("USER")
-//                        .build();
-//                return new InMemoryUserDetailsManager(user1);
-//    }
     @Bean
     public AuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();

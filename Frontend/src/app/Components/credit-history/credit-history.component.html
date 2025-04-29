@@ -1,0 +1,43 @@
+<div class="credit-history-wrapper fade-in">
+  <div class="glass-card credit-history-card fade-in-up">
+    <h2 class="history-title">Credit History Records</h2>
+    <p class="history-subtitle">All your credit activities in one place.</p>
+
+    <div *ngIf="loading" class="text-center my-4">
+      <p>Loading credit history...</p>
+    </div>
+
+    <div *ngIf="!loading && creditHistories.length > 0">
+      <div class="table-container">
+        <table class="history-table">
+          <thead>
+          <tr>
+            <th>Date</th>
+            <th>Credit Score</th>
+            <th>Risk Category</th>
+            <th>Recommendation</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let history of creditHistories">
+            <td>{{ history.predictionDate }}</td>
+            <td>{{ history.creditScore }}</td>
+            <td>{{ history.riskCategory }}</td>
+            <td>
+              <ul>
+                <li *ngFor="let rec of history.recommendations">
+                  {{ rec.recommendationText }}
+                </li>
+              </ul>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div *ngIf="!loading && creditHistories.length === 0" class="text-center my-4">
+      <p>No credit history found.</p>
+    </div>
+  </div>
+</div>

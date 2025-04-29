@@ -1,0 +1,48 @@
+<div class="dashboard-wrapper">
+
+  <!-- Logout Button Top Right -->
+  <div class="logout-wrapper">
+    <button class="btn btn-outline-dark btn-sm" (click)="logout()">Logout</button>
+  </div>
+
+  <h2 class="dashboard-title">Welcome, Staff!</h2>
+
+  <div class="card-container">
+    <div class="dashboard-card" (click)="goToNotification()">
+      <h3>Notifications</h3>
+      <p>View latest system updates and user requests.</p>
+    </div>
+
+    <div class="dashboard-card" (click)="goToUserStaff()">
+      <h3>User-Staff</h3>
+      <p>Assist users and manage support tickets.</p>
+    </div>
+
+    <div class="dashboard-card" (click)="goToMyActivities()">
+      <h3>My Activities</h3>
+      <p>View all your performed activities.</p>
+    </div>
+  </div>
+
+  <h3 class="dashboard-title" style="margin-top: 50px;">Latest Activities</h3>
+
+  <div class="glass-table-wrapper">
+    <table class="glass-table">
+      <thead>
+      <tr>
+        <th>ID</th>
+        <th>Description</th>
+        <th>Time</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let activity of latestActivities">
+        <td>{{ activity.activityId }}</td>
+        <td>{{ activity.activityDescription }}</td>
+        <td>{{ activity.activityTime | date: 'medium' }}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>

@@ -1,0 +1,115 @@
+/* Background */
+body, html {
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(to top left, #dfe9f3, #ffffff);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
+}
+
+/* Container */
+.container {
+  max-width: 800px;
+  margin: 50px auto;
+  padding: 20px;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.85);
+  border-radius: 15px;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  opacity: 0;
+  animation: fadeInBox 1.2s ease forwards;
+}
+
+/* Fade-in Box Animation */
+@keyframes fadeInBox {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Header */
+h2 {
+  font-size: 2rem;
+  color: #3a0ca3;
+  margin-bottom: 20px;
+}
+
+/* Form */
+form {
+  width: 100%;
+}
+
+/* Form Inputs */
+.form-label {
+  font-size: 1.1rem;
+  color: #555;
+  margin-bottom: 8px;
+  display: inline-block;
+}
+
+.form-control {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  transition: border-color 0.3s ease;
+}
+
+.form-control:focus {
+  border-color: #3a0ca3;
+  outline: none;
+}
+
+/* Checkboxes */
+.form-check {
+  margin-bottom: 15px;
+  text-align: left;
+}
+
+.form-check-input {
+  margin-right: 10px;
+}
+
+.form-check-label {
+  font-size: 1rem;
+  color: #333;
+}
+
+/* Button */
+button[type="submit"] {
+  padding: 12px;
+  font-size: 1.2rem;
+  background-color: #3a0ca3;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
+}
+
+button[type="submit"]:hover {
+  background-color: #5a2d9e;
+  cursor: pointer;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .container {
+    padding: 15px;
+  }
+
+  .form-control {
+    font-size: 0.9rem;
+    padding: 10px;
+  }
+
+  button[type="submit"] {
+    font-size: 1rem;
+    padding: 10px;
+  }
+}

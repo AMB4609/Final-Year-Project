@@ -1,8 +1,117 @@
-:host {
+/* Wrapper */
+.register-wrapper {
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
+  padding: 20px;
+  background: linear-gradient(to top left, #dfe9f3, #ffffff);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Glass Card */
+.glass-card {
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 20px;
+  box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  padding: 30px;
   width: 100%;
-  background-color: #cfe2ff; /* Light blue */
+  max-width: 450px;
+  transition: all 0.4s ease;
+}
+
+.glass-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 40px rgba(58, 12, 163, 0.2);
+}
+
+/* Branding */
+.register-brand {
+  color: #7209b7;
+  font-size: 2rem;
+}
+
+/* Form Labels */
+.form-label {
+  font-weight: bold;
+  color: #6c757d;
+}
+
+/* Form Control */
+.form-control,
+.form-select {
+  padding: 10px 15px;
+  border-radius: 8px;
+  border: none;
+  box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.form-control:focus,
+.form-select:focus {
+  outline: none;
+  box-shadow: 0 0 8px rgba(114, 9, 183, 0.3);
+  background: rgba(255, 255, 255, 0.7);
+}
+
+/* Toggle Password Icon */
+.toggle-password {
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: #6c757d;
+}
+
+/* Button */
+.register-button {
+  background-color: #7209b7;
+  color: white;
+  padding: 10px 15px;
+  border-radius: 8px;
+  border: none;
+  transition: all 0.3s ease;
+}
+
+.register-button:hover {
+  background-color: #5a189a;
+}
+
+/* Text Purple */
+.text-purple {
+  color: #7209b7;
+}
+
+.text-purple:hover {
+  text-decoration: underline;
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  0% { opacity: 0; transform: translateY(40px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in-up {
+  animation: fadeInUp 0.8s ease forwards;
+  opacity: 0;
+}
+
+.fade-in {
+  animation: fadeInUp 1.2s ease forwards;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .glass-card {
+    padding: 20px;
+  }
+
+  .register-brand {
+    font-size: 1.5rem;
+  }
 }

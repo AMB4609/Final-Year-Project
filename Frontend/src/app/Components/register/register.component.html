@@ -1,51 +1,64 @@
-<div class="container d-flex justify-content-center align-items-center vh-100 bg-primary-subtle">
-  <div class="card shadow-lg p-4 w-100" style="max-width: 400px;">
-    <h1 class="text-center text-primary fw-bold">Credict</h1>
-    <h2 class="text-center fw-semibold">Register now!</h2>
+<div class="register-wrapper fade-in">
+  <div class="glass-card register-card fade-in-up">
+
+    <h1 class="text-center fw-bold register-brand">Credict</h1>
+    <h2 class="text-center fw-semibold">Register Now!</h2>
     <p class="text-center text-muted">Join the world of credit</p>
 
     <form [formGroup]="userForm" (ngSubmit)="getUser()" novalidate>
+
       <!-- Username -->
-      <div class="mb-3">
+      <div class="form-group mb-3">
         <label class="form-label">Username</label>
         <input type="text" class="form-control" formControlName="userName" placeholder="Enter your Username">
       </div>
 
       <!-- Email -->
-      <div class="mb-3">
+      <div class="form-group mb-3">
         <label class="form-label">Email</label>
         <input type="email" class="form-control" formControlName="userEmail" placeholder="Enter your email id">
       </div>
 
+      <!-- Role -->
+      <div class="form-group mb-3">
+        <label class="form-label">Role</label>
+        <select class="form-select" formControlName="role">
+          <option value="" disabled selected>Select your role</option>
+          <option value="User">User</option>
+          <option value="Staff">Staff</option>
+        </select>
+      </div>
+
       <!-- Password -->
-      <div class="mb-3 position-relative">
+      <div class="form-group mb-3 position-relative">
         <label class="form-label">Password</label>
         <input [type]="showPassword ? 'text' : 'password'" class="form-control" formControlName="userPassword" placeholder="Enter your password">
-        <span class="position-absolute end-0 top-50 translate-middle-y me-3 cursor-pointer" (click)="togglePasswordVisibility()">
+        <span class="position-absolute toggle-password" (click)="togglePasswordVisibility()">
           <i class="bi" [ngClass]="{'bi-eye': !showPassword, 'bi-eye-slash': showPassword}"></i>
         </span>
       </div>
 
       <!-- Confirm Password -->
-      <div class="mb-3 position-relative">
+      <div class="form-group mb-3 position-relative">
         <label class="form-label">Re-Enter Password</label>
         <input [type]="showConfirmPassword ? 'text' : 'password'" class="form-control" formControlName="confirmPassword" placeholder="Re-Enter your password">
-        <span class="position-absolute end-0 top-50 translate-middle-y me-3 cursor-pointer" (click)="toggleConfirmPasswordVisibility()">
+        <span class="position-absolute toggle-password" (click)="toggleConfirmPasswordVisibility()">
+          <i class="bi" [ngClass]="{'bi-eye': !showConfirmPassword, 'bi-eye-slash': showConfirmPassword}"></i>
         </span>
       </div>
 
-      <!-- Error message for password mismatch -->
+      <!-- Error -->
       <div *ngIf="userForm.hasError('passwordsMismatch')" class="text-danger small mb-3">
         Passwords do not match.
       </div>
 
-      <!-- Submit Button -->
-      <button type="submit" class="btn btn-primary w-100" [disabled]="userForm.invalid">Sign Up</button>
+      <!-- Submit -->
+      <button type="submit" class="btn register-button w-100" [disabled]="userForm.invalid">Request For Registration</button>
     </form>
 
-    <!-- Login Link -->
     <p class="text-center text-muted mt-3">
-      Have an Account? <a routerLink="/login" class="text-primary fw-bold text-decoration-none">Login</a>
+      Have an Account? <a routerLink="/login" class="text-purple fw-bold text-decoration-none">Login</a>
     </p>
+
   </div>
 </div>

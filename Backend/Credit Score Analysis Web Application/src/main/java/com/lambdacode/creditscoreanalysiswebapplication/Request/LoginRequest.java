@@ -4,7 +4,6 @@ public class LoginRequest {
     private String userEmail;
     private String userPassword;
 
-    // Getter and Setter for userEmail
     public String getUserEmail() {
         return userEmail;
     }
@@ -13,7 +12,6 @@ public class LoginRequest {
         this.userEmail = userEmail;
     }
 
-    // Getter and Setter for userPassword
     public String getUserPassword() {
         return userPassword;
     }

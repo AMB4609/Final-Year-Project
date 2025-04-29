@@ -1,1 +1,69 @@
-<p>dashboard works!</p>
+<div class="profile-wrapper fade-in">
+  <h2 class="dashboard-title fade-in-up">Credit Score Dashboard</h2>
+
+  <div *ngIf="loading" class="loading fade-in-up">
+    Loading credit history...
+  </div>
+
+  <div *ngIf="!loading">
+
+    <div class="top-summary-container">
+
+      <div class="scores-panel glass-card fade-in-up">
+        <h3>Top 5 Latest Scores</h3>
+        <div *ngIf="top5Predictions.length > 0" class="scores-grid">
+          <div *ngFor="let item of top5Predictions; let i = index"
+               class="score-card glass-card fade-in-card"
+               [style.animationDelay]="(i * 0.2) + 's'">
+            <label>Credit Score:</label>
+            <p>{{ item.creditScore | number:'1.0-0' }}</p>
+
+            <label>Risk Category:</label>
+            <p [ngClass]="{'high-risk': item.riskCategory === 'HighRisk', 'low-risk': item.riskCategory === 'LowRisk'}">
+              {{ item.riskCategory }}
+            </p>
+
+            <label>Prediction Date:</label>
+            <p>{{ item.predictionDate }}</p>
+          </div>
+        </div>
+        <div *ngIf="top5Predictions.length === 0" class="no-data fade-in-up">
+          No prediction history found.
+        </div>
+      </div>
+
+      <div class="average-score-card glass-card fade-in-up">
+        <h3>Average Credit Score (Last 30 Days)</h3>
+        <p>{{ averageCreditScore | number:'1.0-0' }}</p>
+        <div class="pie-chart-panel glass-card fade-in-up">
+          <h3>Risk Category Distribution</h3>
+          <canvas baseChart
+                  [data]="riskPieData"
+                  [options]="riskPieOptions"
+                  [type]="'pie'">
+          </canvas>
+        </div>
+      </div>
+
+
+    </div>
+
+    <div class="chart-panel glass-card fade-in-up">
+      <h3>Credit Score Trend</h3>
+      <canvas baseChart
+              [data]="lineChartData"
+              [options]="lineChartOptions"
+              [type]="'line'">
+      </canvas>
+    </div>
+    <div class="recommendation-panel glass-card fade-in-up">
+      <h3>Latest Recommendations</h3>
+
+      <div *ngFor="let rec of latestRecommendations" class="recommendation-item">
+        <p>{{ rec }}</p>
+      </div>
+    </div>
+
+
+  </div>
+</div>

@@ -1,0 +1,44 @@
+<div class="dashboard-wrapper fade-in">
+  <div class="dashboard-header">
+    <h1>Credit Insights Dashboard</h1>
+    <p>Your personal credit health overview</p>
+  </div>
+
+  <div class="dashboard-cards">
+
+    <!-- Credit Score Card -->
+    <div class="glass-card hover-glow fade-in-up" style="animation-delay: 0.2s;">
+      <h2>Credit Score</h2>
+      <div class="chart-container">
+        <canvas id="creditChart"></canvas>
+      </div>
+      <div class="score-label">{{ creditData.data.creditScore }}/900</div>
+    </div>
+
+    <!-- Risk Level Card -->
+    <div class="glass-card hover-glow fade-in-up" style="animation-delay: 0.4s;">
+      <h2>Risk Level</h2>
+      <div class="chart-container">
+        <canvas id="riskGauge"></canvas>
+      </div>
+      <div class="risk-badge" [ngClass]="{
+        'low-risk': creditData.data.riskCategory === 'LowRisk' || 'LowRisk Basic',
+        'medium-risk': creditData.data.riskCategory === 'MediumRisk' || 'MediumRisk Basic',
+        'high-risk': creditData.data.riskCategory === 'HighRisk' || 'HighRisk Basic'
+      }">
+        {{ creditData.data.riskCategory }}
+      </div>
+    </div>
+
+    <!-- Recommendations Card -->
+    <div class="glass-card hover-glow fade-in-up" style="animation-delay: 0.6s;">
+      <h2>Recommendations</h2>
+      <ul class="recommendations-list">
+        <li *ngFor="let rec of recommendation">
+          <span>✔</span> {{ rec.trim() }}
+        </li>
+      </ul>
+    </div>
+
+  </div>
+</div>

@@ -1,11 +1,12 @@
 import { HttpInterceptorFn } from '@angular/common/http';
+import { inject } from '@angular/core';
+import { Router } from '@angular/router';
 
 export const customInterceptor: HttpInterceptorFn = (req, next) => {
+  const router = inject(Router);
 
-  debugger;
   const localToken = localStorage.getItem('token');
-  console.log(localToken);
-  const excludedEndpoints = ['loginUser','registerUser']; // List of endpoints to exclude
+  const excludedEndpoints = ['loginUser', 'registerUser']; // Endpoints to exclude
 
   // Check if the request URL matches any excluded endpoint
   for (const endpoint of excludedEndpoints) {
@@ -14,11 +15,29 @@ export const customInterceptor: HttpInterceptorFn = (req, next) => {
     }
   }
 
-  // If not excluded and token exists, attach Authorization header
+  // Function to check if token is expired
+  const isTokenExpired = (token: string): boolean => {
+    try {
+      const payload = JSON.parse(atob(token.split('.')[1]));
+      const expiry = payload.exp;
+      const now = Math.floor(Date.now() / 1000);
+      return expiry < now;
+    } catch (e) {
+      console.error('Error decoding token', e);
+      return true; // If error in decoding, treat as expired
+    }
+  };
+
   if (localToken) {
+    if (isTokenExpired(localToken)) {
+      console.warn('Token expired. Redirecting to login.');
+      router.navigate(['/login']);
+      return next(req); // Optionally, you can also block the request here
+    }
+
     const clonedReq = req.clone({
       setHeaders: {
-        Authorization: 'Bearer ${localToken}',
+        Authorization: `Bearer ${localToken}`,
       },
     });
     return next(clonedReq);

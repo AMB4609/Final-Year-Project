@@ -1,0 +1,41 @@
+<div class="form-wrapper fade-in">
+
+  <div class="glass-card form-card fade-in-up">
+
+    <h2 class="form-title">Get Your Credit Score</h2>
+    <p class="form-subtitle">Fill in your details to check your credit health</p>
+
+    <form (ngSubmit)="onSubmit()">
+
+      <div class="form-group">
+        <label>Credit Utilization Ratio</label>
+        <input type="number" [(ngModel)]="inputData.creditUtilizationRatio" name="creditUtilizationRatio" required>
+      </div>
+
+      <div class="form-group">
+        <label>Credit History Age (Months)</label>
+        <input type="number" [(ngModel)]="inputData.creditHistoryAgeMonths" name="creditHistoryAgeMonths" required>
+      </div>
+
+      <div class="form-group">
+        <label>Number of Delayed Payments</label>
+        <input type="number" [(ngModel)]="inputData.numOfDelayedPayment" name="numOfDelayedPayment" required>
+      </div>
+
+      <div class="form-group">
+        <label>Number of Credit Inquiries</label>
+        <input type="number" [(ngModel)]="inputData.numCreditInquiries" name="numCreditInquiries" required>
+      </div>
+
+      <div class="form-group">
+        <label>Credit Mix Number</label>
+        <input type="number" [(ngModel)]="inputData.creditMixNumber" name="creditMixNumber" required>
+      </div>
+
+      <button type="submit" class="submit-button">Check Score</button>
+
+    </form>
+
+  </div>
+
+</div>

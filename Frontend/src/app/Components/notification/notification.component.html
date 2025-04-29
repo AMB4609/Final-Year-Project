@@ -1,0 +1,111 @@
+<div class="approval-wrapper fade-in">
+
+  <div *ngIf="role === 'STAFF' || role === 'ADMIN'" class="glass-card approval-card fade-in-up">
+    <h2 class="approval-title">Pending User Approvals</h2>
+    <p class="approval-subtitle">Review new user registrations</p>
+
+    <div *ngIf="pendingUsers.length > 0; else noUsers">
+
+      <div class="table-container">
+        <table class="approval-table">
+          <thead>
+          <tr>
+            <th>User ID</th>
+            <th>Email</th>
+            <th>Name</th>
+            <th>Role</th>
+            <th>Registration Date</th>
+            <th>Actions</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let user of pendingUsers">
+            <td>{{ user.userId }}</td>
+            <td>{{ user.userEmail || user.staffEmail }}</td> <!-- ✅ fallback -->
+            <td>{{ user.userName || user.staffName }}</td> <!-- ✅ fallback -->
+            <td>{{ user.role || 'Not Assigned' }}</td>
+            <td>{{ user.registrationDate }}</td>
+            <td>
+              <button class="btn-approve" (click)="approve(user.userEmail || user.staffEmail)">✔️</button>
+              <button class="btn-reject" (click)="reject(user.userEmail || user.staffEmail)">❌</button>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+
+    <ng-template #noUsers>
+      <p class="text-muted">No pending users at the moment.</p>
+    </ng-template>
+
+
+  </div>
+  <div *ngIf="role === 'STAFF'|| role === 'ADMIN'" class="glass-card approval-card fade-in-up">
+    <h2 class="approval-title">Reports Needing Recommendations</h2>
+    <p class="approval-subtitle">Download and respond to recommendation requests</p>
+
+    <div *ngIf="staffReports.length > 0; else noStaffReports">
+      <div class="table-container">
+        <table class="approval-table">
+          <thead>
+          <tr>
+            <th>ID</th>
+            <th>User Email</th>
+            <th>Download</th>
+            <th>Recommendation Notes</th>
+            <th>Append</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let report of staffReports">
+            <td>{{ report.id }}</td>
+            <td>{{ report.userEmail }}</td>
+            <td><button class="btn-approve" (click)="downloadPDF(report.id)">📄</button></td>
+            <td>
+              <input type="text" [(ngModel)]="report.recommendationInput" placeholder="Enter notes" />
+            </td>
+            <td>
+              <button class="btn-approve" (click)="appendRecommendation(report.id, report.recommendationInput)">➕</button>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <ng-template #noStaffReports>
+      <p class="text-muted">No pending recommendations at the moment.</p>
+    </ng-template>
+  </div>
+  <div *ngIf="role !== 'STAFF' && role !== 'ADMIN'" class="glass-card approval-card fade-in-up">
+    <h2 class="approval-title">Your Reports with Recommendations</h2>
+    <p class="approval-subtitle">Download your personalized reports</p>
+
+    <div *ngIf="userReports.length > 0; else noUserReports">
+      <div class="table-container">
+        <table class="approval-table">
+          <thead>
+          <tr>
+            <th>ID</th>
+            <th>Recommendation</th>
+            <th>Download</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let report of userReports">
+            <td>{{ report.id }}</td>
+            <td>{{ report.recommendationNotes }}</td>
+            <td><button class="btn-approve" (click)="downloadPDF(report.id)">📄</button></td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <ng-template #noUserReports>
+      <p class="text-muted">No reports available at the moment.</p>
+    </ng-template>
+  </div>
+</div>

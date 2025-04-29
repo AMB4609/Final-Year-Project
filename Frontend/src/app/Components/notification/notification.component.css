@@ -1,0 +1,141 @@
+/* Wrapper */
+.approval-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start; /* ⬅️ Push content to the top */
+  min-height: 100vh;
+  padding: 40px 20px 20px; /* ⬅️ Less padding at top */
+  background: linear-gradient(to top left, #dfe9f3, #ffffff);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+
+/* Glass Card */
+.glass-card {
+  background: rgba(255, 255, 255, 0.25);
+  border-radius: 20px;
+  box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  padding: 30px;
+  width: 100%;
+  max-width: 1100px;
+  transition: all 0.4s ease;
+}
+
+.glass-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 20px 50px rgba(58, 12, 163, 0.3);
+}
+
+/* Titles */
+.approval-title {
+  margin-bottom: 5px;
+  color: #3a0ca3;
+  font-size: 2rem;
+  text-align: center;
+}
+
+.approval-subtitle {
+  color: #555;
+  text-align: center;
+  margin-bottom: 25px;
+  font-size: 1rem;
+}
+
+/* Table Container for responsiveness */
+.table-container {
+  overflow-x: auto;
+}
+
+/* Table */
+.approval-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 12px;
+  overflow: hidden;
+  text-align: left;
+}
+
+.approval-table th,
+.approval-table td {
+  padding: 15px 20px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  white-space: nowrap;
+}
+
+.approval-table th {
+  background: rgba(255, 255, 255, 0.4);
+  color: #333;
+  font-weight: bold;
+}
+
+.approval-table tr:hover {
+  background-color: rgba(114, 9, 183, 0.1);
+}
+
+/* Buttons */
+.btn-approve,
+.btn-reject {
+  border: none;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-right: 5px;
+}
+
+.btn-approve {
+  background-color: #28a745;
+  color: white;
+}
+
+.btn-approve:hover {
+  background-color: #218838;
+}
+
+.btn-reject {
+  background-color: #dc3545;
+  color: white;
+}
+
+.btn-reject:hover {
+  background-color: #c82333;
+}
+
+/* No users text */
+.text-muted {
+  color: #6c757d;
+  text-align: center;
+  margin-top: 20px;
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  0% { opacity: 0; transform: translateY(40px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in-up {
+  animation: fadeInUp 0.8s ease forwards;
+  opacity: 0;
+}
+
+.fade-in {
+  animation: fadeInUp 1.2s ease forwards;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .approval-title {
+    font-size: 1.5rem;
+  }
+
+  .approval-table th,
+  .approval-table td {
+    padding: 10px;
+  }
+}

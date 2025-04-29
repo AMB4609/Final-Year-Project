@@ -1,13 +1,14 @@
 package com.lambdacode.creditscoreanalysiswebapplication.Model;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity(name = "user")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class User {
     @Id
     @GeneratedValue
@@ -19,8 +20,16 @@ public class User {
     private boolean status;
     private LocalDate approveDate;
     private LocalDate registrationDate;
+    @Lob
+    @Column(name = "profile_picture", columnDefinition = "LONGBLOB")
+    private byte[] profilePicture;
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<PredictionLog> predictionLogs;
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Activity> ActivityLogs;
 
-    // Getter and Setter for userId
+
+
     public Integer getUserId() {
         return userId;
     }
@@ -29,7 +38,6 @@ public class User {
         this.userId = userId;
     }
 
-    // Getter and Setter for userEmail
     public String getUserEmail() {
         return userEmail;
     }
@@ -38,7 +46,6 @@ public class User {
         this.userEmail = userEmail;
     }
 
-    // Getter and Setter for userPassword
     public String getUserPassword() {
         return userPassword;
     }
@@ -47,7 +54,6 @@ public class User {
         this.userPassword = userPassword;
     }
 
-    // Getter and Setter for userName
     public String getUserName() {
         return userName;
     }
@@ -56,7 +62,6 @@ public class User {
         this.userName = userName;
     }
 
-    // Getter and Setter for role
     public String getRole() {
         return role;
     }
@@ -65,7 +70,6 @@ public class User {
         this.role = role;
     }
 
-    // Getter and Setter for status
     public boolean getStatus() {
         return status;
     }
@@ -74,7 +78,6 @@ public class User {
         this.status = status;
     }
 
-    // Getter and Setter for approveDate
     public LocalDate getApproveDate() {
         return approveDate;
     }
@@ -83,7 +86,6 @@ public class User {
         this.approveDate = approveDate;
     }
 
-    // Getter and Setter for registrationDate
     public LocalDate getRegistrationDate() {
         return registrationDate;
     }
@@ -91,4 +93,9 @@ public class User {
     public void setRegistrationDate(LocalDate registrationDate) {
         this.registrationDate = registrationDate;
     }
+
+    public void setProfilePicture(byte[] bytes) {
+        this.profilePicture = bytes;
+    }
+    public byte[] getProfilePicture() { return profilePicture; }
 }

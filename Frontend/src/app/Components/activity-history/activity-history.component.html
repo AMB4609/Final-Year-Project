@@ -1,0 +1,24 @@
+<div class="dashboard-wrapper">
+
+  <h2 class="dashboard-title">Activity History for {{ userEmail }}</h2>
+
+  <div class="glass-table-wrapper">
+    <table class="glass-table">
+      <thead>
+      <tr>
+        <th>ID</th>
+        <th>Description</th>
+        <th>Time</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let activity of activities">
+        <td>{{ activity.activityId }}</td>
+        <td>{{ activity.activityDescription }}</td>
+        <td>{{ activity.activityTime | date: 'medium' }}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>

@@ -1,6 +1,10 @@
 export interface AuthResponse {
-  token: string;
+  code: number;
+  message: string;
+  status: boolean;
+  data: string;
 }
+
 export interface Register {
   userEmail: string;
   userPassword: string;

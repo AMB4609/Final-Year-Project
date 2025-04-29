@@ -1,0 +1,94 @@
+<div class="profile-wrapper fade-in">
+  <div class="profile-card glass-card fade-in-up">
+
+    <!-- Profile Section -->
+    <div class="profile-header">
+      <img [src]="previewImage || 'data:image/jpeg;base64,' + userInfo.profilePictureBase64 || 'assets/default-profile.png'" alt="Profile Image" class="profile-avatar" />
+      <h2>{{ userInfo.userName }}</h2>
+      <p>{{ userInfo.userEmail }}</p>
+      <span class="profile-badge">{{ userInfo.role }}</span>
+    </div>
+
+    <div class="profile-details">
+      <div class="detail-item">
+        <label>User ID:</label>
+        <p>{{ userInfo.userId }}</p>
+      </div>
+
+      <div class="detail-item">
+        <label>Status:</label>
+        <p [ngClass]="{'active-status': userInfo.status, 'inactive-status': !userInfo.status}">
+          {{ userInfo.status ? 'Active' : 'Inactive' }}
+        </p>
+      </div>
+      <div *ngIf="userInfo.role === 'Staff' || userInfo.role === 'Admin'" class="detail-item">
+        <label>Phone</label>
+        <p>{{ userInfo.staffPhone }}</p>
+      </div>
+
+      <div *ngIf="userInfo.role === 'Staff' || userInfo.role === 'Admin'" class="detail-item">
+        <label>Address</label>
+        <p>{{ userInfo.staffAddress }}</p>
+      </div>
+
+      <div class="detail-item">
+        <label>Approved Date:</label>
+        <p>{{ userInfo.approveDate }}</p>
+      </div>
+
+      <div class="detail-item">
+        <label>Registration Date:</label>
+        <p>{{ userInfo.registrationDate }}</p>
+      </div>
+    </div>
+
+    <div class="action-buttons">
+      <div class="action-buttons">
+        <button class="btn-edit" (click)="openEditModal()">Edit Profile</button>
+
+        <button *ngIf="currentUserRole === 'ADMIN'" class="btn-role-change" (click)="openRoleChangeModal()">
+          Change Role
+        </button>
+
+        <button class="btn-delete" (click)="deleteProfile()">Delete Profile</button>
+      </div>
+    </div>
+
+    <!-- Edit Modal -->
+    <div *ngIf="showEdit" class="modal-overlay">
+      <div class="modal-content">
+        <h3>Edit Profile</h3>
+        <form (ngSubmit)="updateProfile()" #editForm="ngForm" enctype="multipart/form-data">
+            <input type="text" [(ngModel)]="editData.userName" name="userName" placeholder="Name" required>
+          <div *ngIf="editData.role === 'Staff' || editData.role === 'Admin'">
+            <input type="text" [(ngModel)]="editData.staffPhone" name="staffPhone" placeholder="Phone Number">
+            <input type="text" [(ngModel)]="editData.staffAddress" name="staffAddress" placeholder="Address">
+          </div>
+          <label>
+            <input type="checkbox" [(ngModel)]="editData.status" name="status"> Active
+          </label>
+          <input type="file" (change)="onImageChange($event)">
+          <img *ngIf="previewImage || userInfo.profilePictureBase64" [src]="previewImage || 'data:image/jpeg;base64,' + userInfo.profilePictureBase64" class="preview-image" />
+
+          <button type="submit">Save</button>
+          <button type="button" (click)="closeEditModal()">Cancel</button>
+        </form>
+      </div>
+    </div>
+    <div *ngIf="showRoleChange" class="modal-overlay">
+      <div class="modal-content">
+        <h3>Change User Role</h3>
+        <form (ngSubmit)="changeRole()" #roleForm="ngForm">
+          <select [(ngModel)]="newRole" name="newRole" required>
+            <option value="User">User</option>
+            <option value="Staff">Staff</option>
+            <option value="Admin">Admin</option>
+          </select>
+          <button type="submit">Save Role</button>
+          <button type="button" (click)="closeRoleChangeModal()">Cancel</button>
+        </form>
+      </div>
+    </div>
+
+  </div>
+</div>
